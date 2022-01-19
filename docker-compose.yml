@@ -1,0 +1,41 @@
+services:
+  app:
+    image: 'link-converter:latest'
+    restart: on-failure
+    build:
+      context: .
+    container_name: app
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/link_conversion
+      SPRING_DATASOURCE_USERNAME: med
+      SPRING_DATASOURCE_PASSWORD: password
+    ports:
+      - '8080:8080'
+    expose:
+      - '8080'
+  db:
+    image: mysql:8.0
+    restart: always
+    healthcheck:
+      test: "/usr/bin/mysql --user=med --password=password --execute \"SHOW DATABASES;\""
+      interval: 2s
+      timeout: 30s
+      retries: 15
+    container_name: db
+    environment:
+      MYSQL_DATABASE: 'link_conversion'
+      MYSQL_USER: 'med'
+      MYSQL_PASSWORD: 'password'
+      MYSQL_ROOT_PASSWORD: 'password'
+    ports:
+      - '3306:3306'
+    expose:
+      - '3306'
+    volumes:
+      - my-db:/var/lib/mysql
+      - ./src/main/resources/static/database:/docker-entrypoint-initdb.d
+volumes:
+  my-db:

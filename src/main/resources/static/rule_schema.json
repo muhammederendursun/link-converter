@@ -1,0 +1,205 @@
+{
+  "url": "https://www.med.com",
+  "deepLink": "ty://",
+  "rules": [
+    {
+      "conditions": [
+        {
+          "/": "(/.*)"
+        },
+        {
+          "/": "/.*-p-(?<ContentId>[0-9].*)"
+        },
+        {
+          "?": {
+            "name": "boutiqueId",
+            "value": "(.*.)"
+          }
+        },
+        {
+          "?": {
+            "name": "merchantId",
+            "value": "(.*.)"
+          }
+        }
+      ],
+      "link": "?Page=Product&ContentId={ContentId}&CampaignId={boutiqueId}&MerchantId={merchantId}"
+    },
+    {
+      "conditions": [
+        {
+          "?": {
+            "name": "Page",
+            "value": "Product"
+          }
+        },
+        {
+          "?": {
+            "name": "ContentId",
+            "value": "(.*.)"
+          }
+        },
+        {
+          "?": {
+            "name": "CampaignId",
+            "value": "(.*.)"
+          }
+        },
+        {
+          "?": {
+            "name": "MerchantId",
+            "value": "(.*.)"
+          }
+        }
+      ],
+      "link": "/brand/name-p-{ContentId}?boutiqueId={CampaignId}&merchantId={MerchantId}"
+    },
+    {
+      "conditions": [
+        {
+          "/": "(/.*)"
+        },
+        {
+          "/": "/.*-p-(?<ContentId>[0-9].*)"
+        },
+        {
+          "?": {
+            "name": "boutiqueId",
+            "value": "(.*.)"
+          }
+        }
+      ],
+      "link": "?Page=Product&ContentId={ContentId}&CampaignId={boutiqueId}"
+    },
+    {
+      "conditions": [
+        {
+          "?": {
+            "name": "Page",
+            "value": "Product"
+          }
+        },
+        {
+          "?": {
+            "name": "ContentId",
+            "value": "(.*.)"
+          }
+        },
+        {
+          "?": {
+            "name": "CampaignId",
+            "value": "(.*.)"
+          }
+        }
+      ],
+      "link": "/brand/name-p-{ContentId}?boutiqueId={CampaignId}"
+    },
+    {
+      "conditions": [
+        {
+          "/": "(/.*)"
+        },
+        {
+          "/": "/.*-p-(?<ContentId>[0-9].*)"
+        },
+        {
+          "?": {
+            "name": "merchantId",
+            "value": "(.*.)"
+          }
+        }
+      ],
+      "link": "?Page=Product&ContentId={ContentId}&MerchantId={merchantId}"
+    },
+    {
+      "conditions": [
+        {
+          "/": "(/.*)"
+        },
+        {
+          "/": "/.*-p-(?<ContentId>[0-9].*)"
+        }
+      ],
+      "link": "?Page=Product&ContentId={ContentId}"
+    },
+    {
+      "conditions": [
+        {
+          "?": {
+            "name": "Page",
+            "value": "Product"
+          }
+        },
+        {
+          "?": {
+            "name": "ContentId",
+            "value": "(.*.)"
+          }
+        },
+        {
+          "?": {
+            "name": "MerchantId",
+            "value": "(.*.)"
+          }
+        }
+      ],
+      "link": "/brand/name-p-{ContentId}?merchantId={MerchantId}"
+    },
+    {
+      "conditions": [
+        {
+          "/": "(/sr)"
+        },
+        {
+          "?": {
+            "name": "q",
+            "value": "(.*.)"
+          }
+        }
+      ],
+      "link": "?Page=Search&Query={q}"
+    },
+    {
+      "conditions": [
+        {
+          "?": {
+            "name": "Page",
+            "value": "Product"
+          }
+        },
+        {
+          "?": {
+            "name": "ContentId",
+            "value": "(.*.)"
+          }
+        }
+      ],
+      "link": "/brand/name-p-{ContentId}"
+    },
+    {
+      "conditions": [
+        {
+          "?": {
+            "name": "Page",
+            "value": "Search"
+          }
+        },
+        {
+          "?": {
+            "name": "Query",
+            "value": "(.*.)"
+          }
+        }
+      ],
+      "link": "/sr?q={Query}"
+    },
+    {
+      "conditions": [
+        {
+          "*": "(.*.)"
+        }
+      ],
+      "link": "?Page=Home,{url}"
+    }
+  ]
+}
